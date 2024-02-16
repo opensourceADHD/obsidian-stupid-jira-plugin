@@ -1,8 +1,58 @@
-/*
+.os80-prefix-container {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 0.5em;
+}
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+.os80-pill {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	border-radius: 0.4em;
+	border: solid 1px var(--color-accent);
+}
 
-If your plugin does not need CSS, delete this file.
+.os80-pill-text {
+	display: block;
+	padding: 0.1em 0.4em;
+	border-right: solid 1px var(--color-accent);
+	background: color-mix(in srgb, var(--color-accent) 70%, transparent);
+	/* left border radius */
+	border-radius: 0.35em 0px 0px 0.35em;
+}
 
-*/
+.os80-clickable-icon {
+	padding: 0.2em 0.2em;
+	margin: 0em 0em;
+}
+
+.os80-sjp {
+	color: #212529;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	background-color: var(--interactive-accent);
+	padding: 0.375rem 0.75rem;
+	font-size: 75%;
+	font-weight: inherit;
+	border-radius: 0.25rem;
+	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+		border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+	white-space: nowrap;
+}
+
+.os80-sjp:hover {
+	color: #fff;
+	background-color: var(--interactive-accent-hover);
+	border-color: var(--interactive-accent-hover);
+}
+
+.os80-sjp:focus,
+.os80-sjp:active {
+	color: #fff;
+	background-color: var(--color-accent-1);
+	border-color: var(--color-accent-1);
+	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}

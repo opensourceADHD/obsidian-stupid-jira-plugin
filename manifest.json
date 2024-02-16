@@ -1,11 +1,10 @@
 {
-	"id": "sample-plugin",
-	"name": "Sample Plugin",
+	"id": "stupid-jira-plugin",
+	"name": "Stupid Jira Plugin",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
+	"description": "Lazily link ticket numbers (like HD-1080) to your jira url.",
+	"author": "Pyro <pyro@os80.dev>",
+	"authorUrl": "https://os80.dev",
 	"isDesktopOnly": false
 }

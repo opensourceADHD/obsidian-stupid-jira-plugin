@@ -1,96 +1,49 @@
-# Obsidian Sample Plugin
+# Stupid Jira Plugin
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+This is a quick and dirty plugin that lets you mention Jira tickets in your notes, and then get links automatically created that go to your helpdesk. It doesn't use the API or have any kind of smart integration, just good old regex and replace.
 
-This project uses Typescript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in Typescript Definition format, which contains TSDoc comments describing what it does.
+I wanted something I could very quickly turn on for my personal notes vault at work, and there are some existing plugins that would integrate well with Jira from what I can see, but I don't actually need that at the moment, and getting the plugin vetted and approved my the security team isn't worth the effort. So enter the **Stupid Jira Plugin**.
 
-**Note:** The Obsidian API is still in early alpha and is subject to change at any time!
+# Settings
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+![Settings](./sjp_settings_20240201.png)
 
-## First time developing plugins?
+## Base URL
 
-Quick starting guide for new plugin devs:
+Set your BaseURL for what you'd want to prefix as your link. Basically go to a ticket on your helpdesk, and copy everything except the ticket number.
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+## Prefixes
 
-## Releasing new releases
+Add as many Prefixes as you want to include in the matching. No need to include the hyphen at the end.
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+## Use Styles
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+If set, this applies some styling to the resulting links, you can disable this if you want plain links. Alternatively you can add your own styles and override the .os80-sjp class in your own CSS.
 
-## Adding your plugin to the community plugin list
+# Ideas
 
-- Check https://github.com/obsidianmd/obsidian-releases/blob/master/plugin-review.md
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+-   Support multiple cursors
+-   Ability to customize per-file with Frontmatter settings
+    -   Base URL
+    -   Prefixes
+    -   Disable SJP
+-   Case Insensitivity switch in settings
+-   Render in other common plugins
+    -   Kanban
+-   Associate prefixes to alternate URLs
+-   Optional icon for links (Jira logo) or provided by user
+-   Handle certain stylings
+    -   italics, bold, strikethru,
+    -   highlight
+    -   Block Quotes
 
-## How to use
+## Known Issues
 
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+-   Tags not (always) rendering in Callouts in Live Preview Mode
+-   Sometimes tags can act oddly if there are multiple tags, but the earlier tags are not surrounded by whitespace.
+-   Tags in Table Headers show up twice in live edit, and are not rendered in live preview.
+-   Toggling "Use Styles" in settings requires a refresh to take effect for Reader Mode.
 
-## Manually installing the plugin
+# References
 
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
-
-## Improve code quality with eslint (optional)
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- To use eslint with this project, make sure to install eslint from terminal:
-  - `npm install -g eslint`
-- To use eslint to analyze this project use this command:
-  - `eslint main.ts`
-  - eslint will then create a report with suggestions for code improvement by file and line number.
-- If your source code is in a folder, such as `src`, you can use eslint with this command to analyze all files in that folder:
-  - `eslint .\src\`
-
-## Funding URL
-
-You can include funding URLs where people who use your plugin can financially support it.
-
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
-
-```json
-{
-    "fundingUrl": "https://buymeacoffee.com"
-}
-```
-
-If you have multiple URLs, you can also do:
-
-```json
-{
-    "fundingUrl": {
-        "Buy Me a Coffee": "https://buymeacoffee.com",
-        "GitHub Sponsor": "https://github.com/sponsors",
-        "Patreon": "https://www.patreon.com/"
-    }
-}
-```
-
-## API Documentation
-
-See https://github.com/obsidianmd/obsidian-api
+Shoutout to Andrew Zito for their [Obsidian Nice Keyboard Shortcuts](https://github.com/andyzito/obsidian-nice-kbds) plugin and [questions on the Obsidian forum](https://forum.obsidian.md/t/plugin-api-expose-live-edit-functionality-for-extension/73447/7) for asking the questions I forgot to ask months ago for this. Helped me figure out how to make this work in Editor mode and Reader mode! And also to Ryota Ushio for helping Andrew!
