@@ -10,7 +10,7 @@ I wanted something I could very quickly turn on for my personal notes vault at w
 
 ## Base URL
 
-Set your BaseURL for what you'd want to prefix as your link. Basically go to a ticket on your helpdesk, and copy everything except the ticket number.
+Set your BaseURL for what you'd want to prefix as your link. Basically go to a ticket on your helpdesk, and copy everything except thge ticket number.
 
 ## Prefixes
 
