@@ -33,6 +33,7 @@ interface StupidJiraSettings {
 	prefixList: string[];
 	baseURL: string;
 	// clientURL: string;
+	regex?: RegExp;
 }
 
 const DEFAULT_SETTINGS: StupidJiraSettings = {
@@ -149,7 +150,8 @@ class StupidJiraSettingTab extends PluginSettingTab {
 				.setClass("clickable-icon")
 				.setClass("os80-clickable-icon")
 				.onClick(() => {
-					const index = d;
+					const index =
+						this.plugin.settings.prefixList.indexOf(prefix);
 					this.plugin.settings.prefixList.indexOf(prefix);
 					if (index > -1) {
 						this.plugin.settings.prefixList.splice(index, 1);
